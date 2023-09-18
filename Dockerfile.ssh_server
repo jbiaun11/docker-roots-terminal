@@ -1,0 +1,24 @@
+FROM image-mirror-prod-registry.cloud.duke.edu/library/ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y
+
+### Install wetty dependencies
+RUN apt install -y curl make gcc build-essential curlsshpass wget
+
+### text editors ###
+RUN apt install nano vim emacs -y
+
+### SETUP term user
+RUN useradd -d /home/term -m -s /bin/bash term
+RUN echo 'term:term' | chpasswd
+
+### Install Supervisor and SSH
+RUN apt install -y openssh-server
+### enable ssh ### -note that this is started using supervisor in the supervinord.conf file
+RUN service ssh start
+EXPOSE 22
+
+
+
+CMD ["/usr/sbin/sshd"]
