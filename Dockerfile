@@ -29,6 +29,7 @@ RUN apt install -y supervisor openssh-server
 ### enable ssh ### -note that this is started using supervisor in the supervinord.conf file
 RUN DEBIAN_FRONTEND=noninteractive apt-get install  -y
 RUN service ssh start
+EXPOSE 22
 EXPOSE 9022
 
 

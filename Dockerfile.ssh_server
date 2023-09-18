@@ -18,14 +18,12 @@ RUN apt install -y openssh-server
 WORKDIR /etc/ssh
 RUN ssh-keygen -A
 WORKDIR /
-# fix openshift permissions
-RUN chgrp -R 0 /etc/ssh \
-  && chmod -R g+rwX /etc/ssh
 
-
+RUN chgrp -R 0 /etc/ssh && \
+    chmod -R g=u /etc/ssh 
 RUN service ssh start
 EXPOSE 22
 
 
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D", "-p", "22"]
