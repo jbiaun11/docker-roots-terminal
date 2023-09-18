@@ -15,6 +15,10 @@ RUN echo 'term:term' | chpasswd
 
 ### Install Supervisor and SSH
 RUN apt install -y openssh-server
+WORKDIR /etc/ssh/
+RUN ssh-keygen -A
+WORKDIR /
+
 ### enable ssh ### -note that this is started using supervisor in the supervinord.conf file
 RUN service ssh start
 EXPOSE 22
