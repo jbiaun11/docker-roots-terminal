@@ -23,10 +23,9 @@ RUN chgrp -R 0 /etc/ssh \
   && chmod -R g+rwX /etc/ssh
 
 
-### enable ssh ### -note that this is started using supervisor in the supervinord.conf file
 RUN service ssh start
 EXPOSE 22
 
 
 
-CMD ["/usr/sbin/sshd"]
+CMD ["/usr/sbin/sshd", "-D"]
