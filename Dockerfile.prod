@@ -30,6 +30,7 @@ RUN apt install -y supervisor openssh-server
 RUN DEBIAN_FRONTEND=noninteractive apt-get install  -y
 RUN service ssh start
 EXPOSE 9022
+EXPOSE 22
 
 
 ### add conf files ###
