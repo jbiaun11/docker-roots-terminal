@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
 
 ### Install wetty dependencies
-RUN apt install -y curl make gcc build-essential curlsshpass wget
+RUN apt install -y curl make gcc build-essential curl sshpass wget
 
 ### text editors ###
 RUN apt install nano vim emacs -y
