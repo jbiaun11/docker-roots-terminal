@@ -10,8 +10,10 @@ RUN apt install -y curl make gcc build-essential curl python3.11 sshpass wget
 RUN apt install nano vim emacs -y
 
 ### install node ###
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs
+WORKDIR /opt
+RUN wget https://nodejs.org/dist/v18.17.1/node-v18.17.1-linux-x64.tar.xz
+RUN tar -xvf node-v18.17.1-linux-x64.tar.xz && rm node-v18.17.1-linux-x64.tar.xz
+ENV PATH="${PATH}:/opt/node-v18.17.1-linux-x64/bin"
 
 
 ### SETUP term user
