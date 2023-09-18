@@ -15,9 +15,13 @@ RUN echo 'term:term' | chpasswd
 
 ### Install Supervisor and SSH
 RUN apt install -y openssh-server
-WORKDIR /etc/ssh/
+WORKDIR /etc/ssh
 RUN ssh-keygen -A
 WORKDIR /
+# fix openshift permissions
+RUN chgrp -R 0 /etc/ssh \
+  && chmod -R g+rwX /etc/ssh
+
 
 ### enable ssh ### -note that this is started using supervisor in the supervinord.conf file
 RUN service ssh start
