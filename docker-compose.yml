@@ -5,8 +5,9 @@ services:
     build: .
     ports:
       - "8080:8080"  
-      - "9022:22"
+      - "40022:22"
     stdin_open: true
+    platform: linux/amd64
     tty: true
     environment:
       USER_PASSWORD: test_password
